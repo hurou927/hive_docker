@@ -28,6 +28,7 @@ RUN curl -L https://dlcdn.apache.org/hadoop/common/hadoop-${HADOOP_VERSION}/hado
 RUN mv ${HIVE_HOME}/conf ${HIVE_HOME}/conf.orig
 COPY conf ${HIVE_HOME}/conf
 COPY scripts/entrypoint.sh ${HIVE_HOME}/entrypoint.sh
+COPY scripts/bee.sh ${HIVE_HOME}/bee.sh
 
 
 ARG USERNAME=user
