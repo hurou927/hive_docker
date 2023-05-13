@@ -1,0 +1,39 @@
+# Start the containers
+
+[tasks.require]
+script = '''
+#!/usr/bin/env bash
+'''
+
+[tasks.run]
+dependencies = ["require"]
+command = "docker"
+args = ["compose", "up", "-d", "--build"]
+
+[tasks.kill]
+command = "docker"
+args = ["compose", "kill"]
+
+[tasks.restart]
+dependencies = ["kill", "run"]
+
+[tasks.root]
+script = '''
+#!/bin/bash
+set -eu
+docker compose exec -it hive /bin/bash
+'''
+[tasks.user]
+script = '''
+#!/bin/bash
+set -eu
+docker compose exec --user user -it hive /bin/bash
+'''
+
+[tasks.lab]
+script = '''
+#!/bin/bash
+url=$(docker compose logs | grep -E "127.*lab\?token=" | perl -pe "s/.*(http.*)/\1/"  | head -n 1)
+echo "$url"
+xdg-open "$url"
+'''

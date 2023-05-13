@@ -1,0 +1,5 @@
+
+version: '3'
+services:
+  hive:
+    build: "./hive_image"
