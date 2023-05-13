@@ -30,6 +30,7 @@ COPY conf ${HIVE_HOME}/conf
 COPY scripts/entrypoint.sh ${HIVE_HOME}/entrypoint.sh
 COPY scripts/bee.sh ${HIVE_HOME}/bee.sh
 
+COPY test_data /root/test_data
 
 ARG USERNAME=user
 ARG GROUPNAME=user
